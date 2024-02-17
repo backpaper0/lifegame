@@ -6,7 +6,7 @@ import (
 
 func TestSurroundingSurvival(t *testing.T) {
 	t.Run("左上", func(t *testing.T) {
-		g := NewGame(10, 3, 3, false)
+		g := NewGame(10, 3, 3)
 		g.field[0][1] = 1
 		g.field[1][0] = 1
 		g.field[1][1] = 1
@@ -16,7 +16,7 @@ func TestSurroundingSurvival(t *testing.T) {
 		}
 	})
 	t.Run("右上", func(t *testing.T) {
-		g := NewGame(10, 3, 3, false)
+		g := NewGame(10, 3, 3)
 		g.field[0][1] = 1
 		g.field[1][2] = 1
 		// g.field[1][1] = 1
@@ -26,7 +26,7 @@ func TestSurroundingSurvival(t *testing.T) {
 		}
 	})
 	t.Run("左下", func(t *testing.T) {
-		g := NewGame(10, 3, 3, false)
+		g := NewGame(10, 3, 3)
 		g.field[1][0] = 1
 		g.field[1][1] = 1
 		g.field[2][1] = 1
@@ -36,7 +36,7 @@ func TestSurroundingSurvival(t *testing.T) {
 		}
 	})
 	t.Run("右下", func(t *testing.T) {
-		g := NewGame(10, 3, 3, false)
+		g := NewGame(10, 3, 3)
 		g.field[1][2] = 1
 		// g.field[1][1] = 1
 		g.field[2][1] = 1
@@ -46,7 +46,7 @@ func TestSurroundingSurvival(t *testing.T) {
 		}
 	})
 	t.Run("中央1", func(t *testing.T) {
-		g := NewGame(10, 3, 3, false)
+		g := NewGame(10, 3, 3)
 		g.field[0][0] = 1
 		g.field[0][1] = 1
 		g.field[0][2] = 1
@@ -61,7 +61,7 @@ func TestSurroundingSurvival(t *testing.T) {
 		}
 	})
 	t.Run("中央2", func(t *testing.T) {
-		g := NewGame(10, 3, 3, false)
+		g := NewGame(10, 3, 3)
 		expected := 0
 		if actual := g.surroundingSurvival(1, 1); actual != expected {
 			t.Fatalf("Expected is %v but actual is %v", expected, actual)
