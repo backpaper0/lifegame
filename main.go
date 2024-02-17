@@ -37,6 +37,7 @@ func NewGame(cellSize, fieldWidth, fieldHeight int) *Game {
 		NewNextGenButton(g),
 		NewRandomButton(g),
 		NewClearButton(g),
+		NewFullscreenButton(g),
 	}
 	return g
 }

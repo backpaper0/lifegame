@@ -66,6 +66,17 @@ func NewClearButton(g *Game) *Button {
 	return b
 }
 
+func NewFullscreenButton(g *Game) *Button {
+	b := &Button{
+		text: "FULLSCRN",
+		x:    720, y: 170, width: 70, height: 30,
+	}
+	b.onClick = func(me *Button) {
+		ebiten.SetFullscreen(!ebiten.IsFullscreen())
+	}
+	return b
+}
+
 func (b *Button) HandleClick(px, py int) {
 	if Contains(px, py, b.x, b.y, b.width, b.height) {
 		b.onClick(b)
