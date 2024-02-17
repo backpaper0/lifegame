@@ -6,7 +6,6 @@ import (
 
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/inpututil"
-	"github.com/hajimehoshi/ebiten/v2/internal/ui"
 	"github.com/hajimehoshi/ebiten/v2/vector"
 )
 
@@ -16,7 +15,7 @@ type Game struct {
 	timer, interval           int
 	scene                     int
 	buttons                   []*Button
-	touchIDs                  []ui.TouchID
+	touchIDs                  []ebiten.TouchID
 }
 
 func NewGame(cellSize, fieldWidth, fieldHeight int) *Game {
@@ -32,7 +31,7 @@ func NewGame(cellSize, fieldWidth, fieldHeight int) *Game {
 		timer:        0,
 		interval:     interval,
 		scene:        0,
-		touchIDs:     make([]ui.TouchID, 0),
+		touchIDs:     make([]ebiten.TouchID, 0),
 	}
 
 	g.buttons = []*Button{
