@@ -6,6 +6,7 @@ import (
 
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/inpututil"
+	"github.com/hajimehoshi/ebiten/v2/internal/ui"
 	"github.com/hajimehoshi/ebiten/v2/vector"
 )
 
@@ -15,6 +16,7 @@ type Game struct {
 	timer, interval           int
 	scene                     int
 	buttons                   []*Button
+	touchIDs                  []ui.TouchID
 }
 
 func NewGame(cellSize, fieldWidth, fieldHeight int) *Game {
@@ -30,6 +32,7 @@ func NewGame(cellSize, fieldWidth, fieldHeight int) *Game {
 		timer:        0,
 		interval:     interval,
 		scene:        0,
+		touchIDs:     make([]ui.TouchID, 0),
 	}
 
 	g.buttons = []*Button{
@@ -43,6 +46,17 @@ func NewGame(cellSize, fieldWidth, fieldHeight int) *Game {
 }
 
 func (g *Game) Update() error {
+
+	//スマートフォン対応
+	g.touchIDs = inpututil.AppendJustPressedTouchIDs(g.touchIDs[:0])
+	for _, touchID := range g.touchIDs {
+		px, py := ebiten.TouchPosition(touchID)
+		for _, button := range g.buttons {
+			button.HandleClick(px, py)
+		}
+		g.field.Toggle(px, py)
+	}
+
 	if inpututil.IsMouseButtonJustPressed(ebiten.MouseButtonLeft) {
 		px, py := ebiten.CursorPosition()
 		for _, button := range g.buttons {
